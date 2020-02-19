@@ -20,11 +20,16 @@ type FlexAlignType = 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baselin
     borderTopWidth?: number;
     borderWidth?: number;
     bottom?: number | string;
-    display?: 'none' | 'flex';
+-   display?: 'none' | 'flex';
     end?: number | string;
- -  flex?: number;
-    flexBasis?: number | string;display
-    flexShrink?: number;display 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+-   flex?: number;
+    flexBasis?: number | string;
+-   flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+    flexGrow?: number;
+    flexShrink?: number;
+    flexWrap?: 'wrap' | 'nowrap' | 'wrap-reverse';
+    height?: number | string;
+-   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
     left?: number | string;
     margin?: number | string;
     marginBottom?: number | string;
@@ -34,12 +39,17 @@ type FlexAlignType = 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baselin
     marginRight?: number | string;
     marginStart?: number | string;
     marginTop?: number | string;
-    marginVertical?: number | strindisplay
+    marginVertical?: number | string;
+    maxHeight?: number | string;
+    maxWidth?: number | string;
+    minHeight?: number | string;
     minWidth?: number | string;
     overflow?: 'visible' | 'hidden' | 'scroll';
     padding?: number | string;
     paddingBottom?: number | string;
-    paddingEnd?: number | string;display
+    paddingEnd?: number | string;
+    paddingHorizontal?: number | string;
+    paddingLeft?: number | string;
     paddingRight?: number | string;
     paddingStart?: number | string;
     paddingTop?: number | string;
@@ -86,12 +96,34 @@ const alignItemsOptions = {
     Stretch: 'stretch',
     Baseline: 'baseline'
 }
-const defaultAlignItems = alignItemsOptions.FlexStart;
+const defaultAlignItems = alignItemsOptions.Stretch;
+
+/**
+ * justifyContetnt constants
+ */
+const justifyContentLabel = 'justifyContent'
+const justifyContentOptions = {
+    FlexStart: 'flex-start',
+    FlexEnd: 'flex-end',
+    Center: 'center',
+    SpaceBetween: 'space-between',
+    SpaceAround: 'space-around',
+    SpaceEvenly: 'space-evenly',
+}
+const defaultJustifyContent = justifyContentOptions.FlexStart;
+
+/**
+ * flexGrow constants
+ * (Increase the size of child view)
+ */
+const flexGrowLabel = 'flexGrow'
 
 
 export const generateKnobs = (groupId) => ({
     display: select('display', { none: 'none', flex: 'flex' }, 'flex', groupId),
     flexDirection: select(flexDirectionLabel, flextdirectionOptions, defaultFlexDirection, groupId),
     flex: number(flexLabel, 1, {}, groupId),
-    alignItems: select(alignItemsLabel, alignItemsOptions, defaultAlignItems, groupId)
+    alignItems: select(alignItemsLabel, alignItemsOptions, defaultAlignItems, groupId),
+    justifyContent: select(justifyContentLabel, justifyContentOptions, defaultJustifyContent, groupId),
+    flexGrow: number(flexGrowLabel, 1, {}, groupId),
 })

@@ -9,6 +9,7 @@ import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
 import Flex from './Flex';
+import DynamicFlex from './DynamicFlex';
 import { withKnobs, text, boolean, number, select } from "@storybook/addon-knobs";
 
 
@@ -19,6 +20,10 @@ storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo(
 storiesOf('Flex', module)
   .addDecorator(withKnobs)
   .add('with knobs', Flex);
+
+storiesOf('DynamicFlex', module)
+  .addDecorator(withKnobs)
+  .add('with knobs', DynamicFlex);
 
 storiesOf('Button', module)
   .addDecorator(getStory => <CenterView>{getStory()}</CenterView>)
