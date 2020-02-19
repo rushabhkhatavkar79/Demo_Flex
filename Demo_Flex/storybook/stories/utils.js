@@ -26,7 +26,7 @@ type FlexAlignType = 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baselin
     flexBasis?: number | string;
 -   flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
     flexGrow?: number;
-    flexShrink?: number;
+-   flexShrink?: number;
     flexWrap?: 'wrap' | 'nowrap' | 'wrap-reverse';
     height?: number | string;
 -   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
@@ -122,8 +122,8 @@ const flexGrowLabel = 'flexGrow'
 export const generateKnobs = (groupId) => ({
     display: select('display', { none: 'none', flex: 'flex' }, 'flex', groupId),
     flexDirection: select(flexDirectionLabel, flextdirectionOptions, defaultFlexDirection, groupId),
-    flex: number(flexLabel, 1, {}, groupId),
+    flex: number(flexLabel, 1, {}, groupId) || 0,
     alignItems: select(alignItemsLabel, alignItemsOptions, defaultAlignItems, groupId),
     justifyContent: select(justifyContentLabel, justifyContentOptions, defaultJustifyContent, groupId),
-    flexGrow: number(flexGrowLabel, 1, {}, groupId),
+    flexGrow: number(flexGrowLabel, 0, {}, groupId) || 0,
 })
