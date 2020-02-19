@@ -5,19 +5,25 @@ import { withKnobs, text, boolean, number, select } from "@storybook/addon-knobs
 
 
 const generateView = (groupLabel) => {
-    const topParentKnobs = generateKnobs(groupLabel)
+
+    const viewName = text("view name", groupLabel, groupLabel)
     const noOfChildren = number("Child qt.", 0, {}, groupLabel);
-    let childViews = null;
+
+    const topParentKnobs = generateKnobs(groupLabel)
+
+    let childViews = [];
     if (noOfChildren) {
         childViews = []
         for (let count = 1; count <= noOfChildren; count++) {
             const v = generateView(groupLabel + count)
             childViews.push(v);
         }
+    } else {
+        childViews.push(<Text key={groupLabel + "textNode"}>{viewName}</Text>);
     }
 
     return (
-        <View style={{
+        <View key={groupLabel} style={{
             ...topParentKnobs,
             borderStyle: "dotted",
             borderColor: "black",
